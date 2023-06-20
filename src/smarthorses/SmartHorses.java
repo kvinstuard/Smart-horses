@@ -4,6 +4,8 @@
  */
 package smarthorses;
 
+import GUI.VentanaPrincipal;
+
 /**
  *
  * @author Nicolas
@@ -14,7 +16,8 @@ public class SmartHorses {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TOvDO code application logic here
+        VentanaPrincipal vp = new VentanaPrincipal();
+        vp.setVisible(true);
     }
     
 }
