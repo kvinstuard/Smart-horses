@@ -6,43 +6,57 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Nicolas
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
-    JLabel tablero [][];
+
+    JButton tablero[][];
     Tablero tb = new Tablero();
-    int [][] matriz = {
-        {1,0,0,0,0,0,0,0},
-        {0,2,0,0,0,0,0,0},
-        {0,0,3,0,0,0,0,0},
-        {0,0,0,4,8,0,0,0},
-        {0,0,0,9,5,0,0,0},
-        {0,0,0,0,0,6,0,0},
-        {0,0,0,0,0,0,7,0},
-        {0,0,0,0,0,0,0,8}
+    int[][] matriz = {
+        {1, 0, 0, 0, 0, 0, 0, 0},
+        {0, 2, 0, 0, 0, 0, 0, 0},
+        {0, 0, 3, 0, 0, 0, 0, 0},
+        {0, 0, 0, 4, 8, 0, 0, 0},
+        {0, 0, 0, 9, 5, 0, 0, 0},
+        {0, 0, 0, 0, 0, 6, 0, 0},
+        {0, 0, 0, 0, 0, 0, 7, 0},
+        {0, 0, 0, 0, 0, 0, 0, 8}
     };
-    
+
     public VentanaPrincipal() {
         initComponents();
         setTitle("Smart Horses");
         setLocationRelativeTo(null);
         jComboDificultad.setBackground(Color.white);
         btnComenzar.setBackground(Color.white);
-        tablero = new JLabel[8][8];
+        jComboDificultad.addItem("Principiante");
+        jComboDificultad.addItem("Intermedio");
+        jComboDificultad.addItem("Experto");
+        tablero = new JButton[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                tablero[i][j] = new JLabel();
+                final int currentRow = i;
+                final int currentCol = j;
+                tablero[i][j] = new JButton();
+                tablero[i][j].addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        // Acciones a realizar cuando se presione el botón
+                        System.out.println("Posición: "+currentRow+", "+currentCol);
+                        tb.moverCaballo(panelTablero, tablero, currentRow, currentRow);
+                    }
+                });
             }
         }
-        tb.pintarTablero(matriz, panelTablero, tablero);
-     
     }
 
     /**
@@ -59,6 +73,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jComboDificultad = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btnComenzar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         panelDerecho = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         panelTablero = new javax.swing.JPanel();
@@ -92,6 +107,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelIzquierdoLayout = new javax.swing.GroupLayout(panelIzquierdo);
         panelIzquierdo.setLayout(panelIzquierdoLayout);
         panelIzquierdoLayout.setHorizontalGroup(
@@ -108,7 +130,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addGap(9, 9, 9))))
                     .addGroup(panelIzquierdoLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(btnComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(btnComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -121,6 +145,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jComboDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -129,17 +155,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("SANSON", 1, 36)); // NOI18N
         jLabel2.setText("Smart Horses");
 
-        panelTablero.setBackground(new java.awt.Color(204, 204, 204));
+        panelTablero.setBackground(new java.awt.Color(255, 255, 255));
+        panelTablero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelTablero.setPreferredSize(new java.awt.Dimension(400, 401));
 
         javax.swing.GroupLayout panelTableroLayout = new javax.swing.GroupLayout(panelTablero);
         panelTablero.setLayout(panelTableroLayout);
         panelTableroLayout.setHorizontalGroup(
             panelTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
         panelTableroLayout.setVerticalGroup(
             panelTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+            .addGap(0, 399, Short.MAX_VALUE)
         );
 
         PtsJ1.setFont(new java.awt.Font("SANSON", 1, 18)); // NOI18N
@@ -193,7 +221,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PtsJ1))
                     .addComponent(panelTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
@@ -226,8 +254,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarActionPerformed
-        // TODO add your handling code here:
+        tb.pintarNuevoTablero(panelTablero, tablero);
+        //etiSelDif.setVisible(false);
     }//GEN-LAST:event_btnComenzarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        tb.mostrarMovimientos(panelTablero, tablero,0,0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,6 +303,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnComenzar;
     private javax.swing.JLabel etiPtsJ2;
     private javax.swing.JLabel etiPtsJ3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboDificultad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
