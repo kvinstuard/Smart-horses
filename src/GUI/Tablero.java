@@ -21,8 +21,7 @@ public class Tablero {
 
     public int icb, jcb, icn, jcn;
     public int matrizT[][];
-    public List<Integer> posiciones = new ArrayList<>();
-    public List<List<Integer>> movientosPosibles = new ArrayList<>();
+    public ArrayList<List<Integer>> movientosPosibles;
 
     public int[][] matrizRandom() {
         int matriz[][] = new int[8][8];
@@ -87,6 +86,8 @@ public class Tablero {
     }
 
     public void mostrarMovimientos(JPanel panel, JButton[][] tablero, int posI, int posJ) {
+        movientosPosibles = new ArrayList<>();
+
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 tablero[i][j].setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 1));
@@ -96,9 +97,8 @@ public class Tablero {
         int nr = posI - 2;
         int nc = posJ + 1;
         if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-            posiciones.add(nr);
-            posiciones.add(nc);
-            movientosPosibles.add(posiciones);
+            List<Integer> posicion = Arrays.asList(nr, nc);
+            movientosPosibles.add(posicion);
             tablero[nr][nc].setBorder(BorderFactory.createLineBorder(Color.green, 3));
             System.out.println("nueva posición: [" + nr + ", " + nc + "]");
 
@@ -107,11 +107,8 @@ public class Tablero {
         nr = posI - 1;
         nc = posJ + 2;
         if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-            posiciones.clear();
-            movientosPosibles.clear();
-            posiciones.add(nr);
-            posiciones.add(nc);
-            movientosPosibles.add(posiciones);
+            List<Integer> posicion = Arrays.asList(nr, nc);
+            movientosPosibles.add(posicion);
             tablero[nr][nc].setBorder(BorderFactory.createLineBorder(Color.green, 3));
             System.out.println("nueva posición: [" + nr + ", " + nc + "]");
         }
@@ -119,10 +116,8 @@ public class Tablero {
         nr = posI + 1;
         nc = posJ + 2;
         if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-            posiciones.clear();
-            movientosPosibles.clear();
-            posiciones.add(nr);
-            posiciones.add(nc);
+            List<Integer> posicion = Arrays.asList(nr, nc);
+            movientosPosibles.add(posicion);
             tablero[nr][nc].setBorder(BorderFactory.createLineBorder(Color.green, 3));
             System.out.println("nueva posición: [" + nr + ", " + nc + "]");
         }
@@ -130,12 +125,9 @@ public class Tablero {
         nr = posI + 2;
         nc = posJ + 1;
         if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-            posiciones.clear();
-            movientosPosibles.clear();
-            posiciones.add(nr);
-            posiciones.add(nc);
+            List<Integer> posicion = Arrays.asList(nr, nc);
+            movientosPosibles.add(posicion);
             tablero[nr][nc].setBorder(BorderFactory.createLineBorder(Color.green, 3));
-
             System.out.println("nueva posición: [" + nr + ", " + nc + "]");
 
         }
@@ -143,10 +135,8 @@ public class Tablero {
         nr = posI - 2;
         nc = posJ - 1;
         if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-            posiciones.clear();
-            movientosPosibles.clear();
-            posiciones.add(nr);
-            posiciones.add(nc);
+            List<Integer> posicion = Arrays.asList(nr, nc);
+            movientosPosibles.add(posicion);
             tablero[nr][nc].setBorder(BorderFactory.createLineBorder(Color.green, 3));
             System.out.println("nueva posición: [" + nr + ", " + nc + "]");
         }
@@ -154,10 +144,8 @@ public class Tablero {
         nr = posI - 1;
         nc = posJ - 2;
         if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-            posiciones.clear();
-            movientosPosibles.clear();
-            posiciones.add(nr);
-            posiciones.add(nc);
+            List<Integer> posicion = Arrays.asList(nr, nc);
+            movientosPosibles.add(posicion);
             tablero[nr][nc].setBorder(BorderFactory.createLineBorder(Color.green, 3));
             System.out.println("nueva posición: [" + nr + ", " + nc + "]");
         }
@@ -165,10 +153,8 @@ public class Tablero {
         nr = posI + 1;
         nc = posJ - 2;
         if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-            posiciones.clear();
-            movientosPosibles.clear();
-            posiciones.add(nr);
-            posiciones.add(nc);
+            List<Integer> posicion = Arrays.asList(nr, nc);
+            movientosPosibles.add(posicion);
             tablero[nr][nc].setBorder(BorderFactory.createLineBorder(Color.green, 3));
             System.out.println("nueva posición: [" + nr + ", " + nc + "]");
         }
@@ -176,10 +162,8 @@ public class Tablero {
         nr = posI + 2;
         nc = posJ - 1;
         if (nr >= 0 && nr < 8 && nc >= 0 && nc < 8) {
-            posiciones.clear();
-            movientosPosibles.clear();
-            posiciones.add(nr);
-            posiciones.add(nc);
+            List<Integer> posicion = Arrays.asList(nr, nc);
+            movientosPosibles.add(posicion);
             tablero[nr][nc].setBorder(BorderFactory.createLineBorder(Color.green, 3));
             System.out.println("nueva posición: [" + nr + ", " + nc + "]");
         }
@@ -193,10 +177,13 @@ public class Tablero {
                     
                 }
             }*/
-        System.out.println("rrrrrrrrrrrrrr " + movientosPosibles.get(0).get(1));
+        for (int i = 0; i < movientosPosibles.size(); i++) {
+            System.out.println("Movimientos posibles: " + movientosPosibles.get(i));
+        }
     }
 
     public void moverCaballo(JPanel panel, JButton[][] tablero, int posI, int posJ) {
+
         for (int i = 0; i < movientosPosibles.size(); i++) {
             if (posI == movientosPosibles.get(i).get(0) && posJ == movientosPosibles.get(i).get(1)) {
                 matrizT[posI][posJ] = 8;
@@ -204,11 +191,11 @@ public class Tablero {
                 icn = posI;
                 jcn = posJ;
                 pintarTablero(matrizT, panel, tablero);
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "Movimiento no permitido");
+                return;
             }
         }
+        JOptionPane.showMessageDialog(null, "Movimiento no permitido");
+
     }
 
     public ImageIcon seleccionarIcono(int laberinto) {
