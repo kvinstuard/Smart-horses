@@ -52,7 +52,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     public void actionPerformed(ActionEvent e) {
                         // Acciones a realizar cuando se presione el botón
                         System.out.println("Posición: "+currentRow+", "+currentCol);
-                        tb.moverCaballo(panelTablero, tablero, currentRow, currentRow);
+                        tb.moverCaballo(panelTablero, tablero, currentRow, currentCol);
                     }
                 });
             }
@@ -73,7 +73,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jComboDificultad = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btnComenzar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         panelDerecho = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         panelTablero = new javax.swing.JPanel();
@@ -107,13 +106,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelIzquierdoLayout = new javax.swing.GroupLayout(panelIzquierdo);
         panelIzquierdo.setLayout(panelIzquierdoLayout);
         panelIzquierdoLayout.setHorizontalGroup(
@@ -130,9 +122,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addGap(9, 9, 9))))
                     .addGroup(panelIzquierdoLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(btnComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -145,8 +135,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jComboDificultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
-                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -258,10 +246,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //etiSelDif.setVisible(false);
     }//GEN-LAST:event_btnComenzarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        tb.mostrarMovimientos(panelTablero, tablero,0,0);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -303,7 +287,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnComenzar;
     private javax.swing.JLabel etiPtsJ2;
     private javax.swing.JLabel etiPtsJ3;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboDificultad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
