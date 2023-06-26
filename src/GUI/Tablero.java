@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Model.Estado;
 import java.awt.Color;
 import java.util.List;
 import java.awt.Rectangle;
@@ -50,23 +51,9 @@ public class Tablero {
         return matriz;
     }
 
-    public void pintarNuevoTablero(JPanel panel, JButton[][] tablero) {
-        matrizT = matrizRandom();
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                tablero[i][j].setOpaque(true);
-                tablero[i][j].setBounds(new Rectangle(50, 51)); // se dibuja como un rectangulo.
-                ImageIcon imagen = seleccionarIcono(matrizT[i][j]);
-                tablero[i][j].setLocation(j * 50, i * 50);
-                tablero[i][j].setIcon(imagen);
-                tablero[i][j].setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-                panel.add(tablero[i][j]);
-            }
-        }
-        mostrarMovimientos(panel, tablero, icn, jcn);
-    }
-
-    public void pintarTablero(int matriz[][], JPanel panel, JButton[][] tablero) {
+    public void pintarNuevoTablero(int matriz[][], JPanel panel, JButton[][] tablero) {
+        //Estado raiz = Estado.crearEstadoInicial(8);
+        //matrizT = matrizRandom();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 tablero[i][j].setOpaque(true);
@@ -78,7 +65,23 @@ public class Tablero {
                 panel.add(tablero[i][j]);
             }
         }
-        mostrarMovimientos(panel, tablero, icn, jcn);
+        //mostrarMovimientos(panel, tablero, icn, jcn);
+    }
+
+    public void pintarTablero(int matriz[][], JPanel panel, JButton[][] tablero) {
+        
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                tablero[i][j].setOpaque(true);
+                tablero[i][j].setBounds(new Rectangle(50, 51)); // se dibuja como un rectangulo.
+                ImageIcon imagen = seleccionarIcono(matriz[i][j]);
+                tablero[i][j].setLocation(j * 50, i * 50);
+                tablero[i][j].setIcon(imagen);
+                tablero[i][j].setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                panel.add(tablero[i][j]);
+            } 
+        }
+        //mostrarMovimientos(panel, tablero, icn, jcn);
     }
 
     public boolean isValidMove(int row, int col) {
