@@ -18,6 +18,9 @@ public class SmartHorses {
     public static void main(String[] args) {
         VentanaPrincipal vp = new VentanaPrincipal();
         vp.setVisible(true);
+        World mundo = new World(8, 8);
+        mundo.RandomWorld();
+        mundo.printWorld();
     }
     
 }

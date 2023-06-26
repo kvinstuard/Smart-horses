@@ -4,7 +4,7 @@ public class Node {
 
     private String tipoNodo; //max, min or undefined
     private int profundidad;
-    private int utilidad; //inicial MIN=+infinito, MAX=-infinito
+    private int utilidad; 
     private Node padre;
     private int maxValue;
     private int minValue;
@@ -17,8 +17,6 @@ public class Node {
         this.maxValue = 0;
         this.minValue = 0;
     }
-
-
 
 
     //GETTERS

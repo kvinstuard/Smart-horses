@@ -17,7 +17,7 @@ public class World {
     //generando numeros aleatorios en el rango de 0 - 7
     public static int randomPosition(int item){
             Random random = new Random();
-            item = (int) (random.nextDouble() * 8);
+            item = (int) (random.nextInt(8));
             return item;
     }
 
@@ -64,11 +64,13 @@ public class World {
             }
         }
 
-        //Generando los numeros de manera aleatoria 
+        //Generando los numeros de manera aleatoria (en ocasiones no se imprime un numero)
         for (int i = 0; i < this.numbers.length; i++) {
-            if(!(this.matrix[randomPosition(itemX)][randomPosition(itemY)] == numbers[i])){
-            this.matrix[randomPosition(itemX)][randomPosition(itemY)] = numbers[i];
-        }  
+            int x = randomPosition(itemX);
+            int y = randomPosition(itemY);
+            if(!(this.matrix[x][y] == numbers[i])){
+            this.matrix[x][y] = numbers[i];    
+            }
         }
 
         /* 
